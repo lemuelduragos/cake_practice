@@ -49,6 +49,7 @@ Cache::config('default', array('engine' => 'File'));
  *     'Plugin'                    => array('/path/to/plugins/', '/next/path/to/plugins/'),
  * ));
  */
+CakePlugin::load('DebugKit');
 
 /**
  * Custom Inflector rules can be set to correctly pluralize or singularize table, model, controller names or whatever other

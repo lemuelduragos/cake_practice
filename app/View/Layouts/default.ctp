@@ -18,7 +18,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 ?>
 <!DOCTYPE html>
-<html>
+<html ng-app="orderingSystem">
 <head>
 	<?php echo $this->Html->charset(); ?>
 	<title>
@@ -28,18 +28,62 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 	<?php
 		echo $this->Html->meta('icon');
 
-		echo $this->Html->css('cake.generic');
+		echo $this->Html->css('bootstrap.min');
+		echo $this->Html->script('angular.min');
+		echo $this->Html->script('bootstrap.min');
+		echo $this->Html->script('jquery.min');
+		echo $this->Html->script('angularscript');
+
+
 
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
 		echo $this->fetch('script');
+
+		   if(isset($_SESSION['Auth']['User'])){
+		   		$fullname = $_SESSION['Auth']['User']['first_name']." ".$_SESSION['Auth']['User']['last_name'];
+				$status = 'Logout';
+			} else {
+				$status = 'Login';
+				$fullname='Guest';
+			}
 	?>
 </head>
 <body>
-	<div id="container">
-		<div id="header">
-			<h1><?php echo $this->Html->link($cakeDescription, 'https://cakephp.org'); ?></h1>
+	<div id="container" ng-controller="globalController">
+		<div id="header" style="background-color: #DDB54C">
+			<nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
+			  <div class="container">
+			    <a href="http://localhost.com/cakeangular/products/index"><h1 class="navbar-brand">Ordering System</h1></a>
+			    </button>
+			    <div class="" id="">
+			      <ul class="navbar-nav ml-auto">
+			      	<li class="nav-item">
+			      		<b><a class ="nav-link" href="http://localhost.com/cakeangular/users/index"><?php echo "Hello, ".$fullname; ?></a></b>
+			      	</li> <span class ="nav-link">⋮</span>
+			        <li class="nav-item">
+			          <?php echo $this->HTML->link('Shop', array('action' => '../products/index'), array('class' => 'nav-link'))?>
+			        </li> <span class ="nav-link">⋮</span>
+			         <li class="nav-item">
+			          <?php echo $this->HTML->link('Orders', array('action' => '../users/index'), array('class' => 'nav-link'))?>
+			        </li> <span class ="nav-link">⋮</span>
+			        <li class="nav-item">
+			         	 <?php echo $this->HTML->link('Cart-{{count}}', array('action' => '../carts/index'), array('class' => 'nav-link', 'ng-click' => 'loadCart()'))?>
+			        </li> <span class ="nav-link">⋮</span>
+			        <li class="nav-item">
+			          <?php echo $this->HTML->link('Profile', array('action' => '../users/index'), array('class' => 'nav-link'))?>
+			        </li> <span class ="nav-link">⋮</span>
+			        <li class="nav-item">
+			          <?php 
+			          echo $this->HTML->link($status, array('action' => '../users/'.$status), array('class' => 'nav-link'))
+			          ?>
+			        </li>
+			      </ul>
+			    </div>
+			  </div>
+			</nav>
 		</div>
+		<br><br><br>
 		<div id="content">
 
 			<?php echo $this->Flash->render(); ?>
@@ -47,17 +91,9 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 			<?php echo $this->fetch('content'); ?>
 		</div>
 		<div id="footer">
-			<?php echo $this->Html->link(
-					$this->Html->image('cake.power.gif', array('alt' => $cakeDescription, 'border' => '0')),
-					'https://cakephp.org/',
-					array('target' => '_blank', 'escape' => false, 'id' => 'cake-powered')
-				);
-			?>
-			<p>
-				<?php echo $cakeVersion; ?>
-			</p>
 		</div>
 	</div>
-	<?php echo $this->element('sql_dump'); ?>
 </body>
+
 </html>
+<!-- <?php echo $this->element('sql_dump'); ?> -->

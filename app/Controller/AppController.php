@@ -31,4 +31,26 @@ App::uses('Controller', 'Controller');
  * @link		https://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
 class AppController extends Controller {
+
+  public $ext = '.php';
+
+	public $components = array(
+	'DebugKit.Toolbar',
+    'Session',
+    'Flash',
+    'Cookie',
+    'Auth' => array(
+      'authenticate'=>array(
+        'Form'=>array(
+          'fields'=>array('username'=>'username','password'=>'password')
+        )
+      ),
+      'loginRedirect' => array('controller' => 'products', 'action' => 'index'),
+      'logoutRedirect' => array('controller' => 'users', 'action' => 'login'),
+      'loginAction' => array('controller' => 'users', 'action' => 'login'),
+      'authError' => 'You must be logged in to view this page.',
+      'loginError' => 'Invalid Email or Password entered, please try again.'
+    )
+  );
+
 }
