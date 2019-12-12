@@ -15,7 +15,7 @@
                         echo  $this->Form->end($options); 
                     ?>
                     <form class='login'>
-                    <center><a>Sign Up for Free Click</a> <a href="http://localhost.com/cakeangular/users/register"><b>HERE</b></a></center>
+                    <center><a>Sign Up for Free Click</a> <a href="register"><b>HERE</b></a></center>
                     </form>
             </div>
         </div>
@@ -33,7 +33,6 @@
     var noBackPlease = function () {
         global.location.href += "#";
 
-        // making sure we have the fruit available for juice (^__^)
         global.setTimeout(function () {
             global.location.href += "!";
         }, 50);

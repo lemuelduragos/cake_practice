@@ -14,7 +14,7 @@
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
 
-$cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework');
+$cakeDescription = __d('cake_dev', 'Queue System');
 $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 ?>
 <!DOCTYPE html>
@@ -28,12 +28,11 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 	<?php
 		echo $this->Html->meta('icon');
 
+		echo $this->Html->script('jquery.min');
 		echo $this->Html->css('bootstrap.min');
 		echo $this->Html->script('angular.min');
 		echo $this->Html->script('bootstrap.min');
-		echo $this->Html->script('jquery.min');
 		echo $this->Html->script('angularscript');
-
 
 
 		echo $this->fetch('meta');
@@ -41,45 +40,52 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 		echo $this->fetch('script');
 
 		   if(isset($_SESSION['Auth']['User'])){
-		   		$fullname = $_SESSION['Auth']['User']['first_name']." ".$_SESSION['Auth']['User']['last_name'];
+		   	$role = $_SESSION['Auth']['User']['role'];
+		   	$stringRole = "";
+		   	switch($role) {
+		   		case 1: 
+		   			$stringRole = "[Registrar]";
+		   			break;
+		   		case 2: 
+		   			$stringRole = "[Cashier]";
+		   			break;
+		   		case 3:	
+		   			$stringRole = "[Bookkeeper]";
+		   			break;
+		   	}
+		   		$fullname = $stringRole." ".$_SESSION['Auth']['User']['first_name']." ".$_SESSION['Auth']['User']['last_name'];
 				$status = 'Logout';
 			} else {
 				$status = 'Login';
-				$fullname='Guest';
+				$fullname='Hello, Guest';
 			}
 	?>
 </head>
 <body>
-	<div id="container" ng-controller="globalController">
+	<div id="container">
 		<div id="header" style="background-color: #DDB54C">
 			<nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
 			  <div class="container">
-			    <a href="http://localhost.com/cakeangular/products/index"><h1 class="navbar-brand">Ordering System</h1></a>
-			    </button>
-			    <div class="" id="">
-			      <ul class="navbar-nav ml-auto">
-			      	<li class="nav-item">
-			      		<b><a class ="nav-link" href="http://localhost.com/cakeangular/users/index"><?php echo "Hello, ".$fullname; ?></a></b>
-			      	</li> <span class ="nav-link">⋮</span>
-			        <li class="nav-item">
-			          <?php echo $this->HTML->link('Shop', array('action' => '../products/index'), array('class' => 'nav-link'))?>
-			        </li> <span class ="nav-link">⋮</span>
-			         <li class="nav-item">
-			          <?php echo $this->HTML->link('Orders', array('action' => '../users/index'), array('class' => 'nav-link'))?>
-			        </li> <span class ="nav-link">⋮</span>
-			        <li class="nav-item">
-			         	 <?php echo $this->HTML->link('Cart-{{count}}', array('action' => '../carts/index'), array('class' => 'nav-link', 'ng-click' => 'loadCart()'))?>
-			        </li> <span class ="nav-link">⋮</span>
-			        <li class="nav-item">
-			          <?php echo $this->HTML->link('Profile', array('action' => '../users/index'), array('class' => 'nav-link'))?>
-			        </li> <span class ="nav-link">⋮</span>
-			        <li class="nav-item">
-			          <?php 
-			          echo $this->HTML->link($status, array('action' => '../users/'.$status), array('class' => 'nav-link'))
-			          ?>
-			        </li>
-			      </ul>
-			    </div>
+<!-- 			  	<img style="width: 100px;height: 100px" src="https://upload.wikimedia.org/wikipedia/en/thumb/6/67/Negros_Oriental_State_University.png/200px-Negros_Oriental_State_University.png"> -->
+
+	             	<h1 class="navbar-brand"><?php echo $this->HTML->link('Queue System', array('action' => '../queues/index'), array('class' => 'nav-link'))?></h1>
+
+				     <ul class="navbar-nav ml-auto">
+				      	<li class="nav-item">
+				      		<?php echo $this->HTML->link($fullname, array('action' => '../users/index'), array('class' => 'nav-link'))?>
+				      	</li> <span class ="nav-link"></span>
+				        <li class="nav-item">
+				          <?php echo $this->HTML->link('Profile', array('action' => '../users/index'), array('class' => 'nav-link'))?>
+				        </li>
+				        <li class="nav-item">
+				          <?php echo $this->HTML->link('Test Add', array('action' => '../queues/add'), array('class' => 'nav-link'))?>
+				        </li>
+				        <li class="nav-item">
+				          <?php 
+				          echo $this->HTML->link($status, array('action' => '../users/'.$status), array('class' => 'nav-link'))
+				          ?>
+				        </li>
+				     </ul>
 			  </div>
 			</nav>
 		</div>

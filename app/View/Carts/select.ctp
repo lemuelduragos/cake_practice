@@ -59,7 +59,7 @@
       document.getElementById("total"+id).innerHTML = unittotal + price;
         $.ajax({
             type: "POST",
-            url: "http://localhost.com/cakeangular/carts/addQuantity",
+            url: "http://localhost.com/cake_practice/carts/addQuantity",
             data:{id : id, quantity: quantity+1},
             success: function(response) {
             },
@@ -79,7 +79,7 @@
       document.getElementById("total"+id).innerHTML = unittotal - price;
        $.ajax({
             type: "POST",
-            url: "http://localhost.com/cakeangular/carts/minusQuantity",
+            url: "http://localhost.com/cake_practice/carts/minusQuantity",
             data:{id : id, quantity: quantity-1},
             success: function(response) {
             },

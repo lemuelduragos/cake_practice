@@ -37,6 +37,7 @@ class AppController extends Controller {
 	public $components = array(
 	'DebugKit.Toolbar',
     'Session',
+    'RequestHandler',
     'Flash',
     'Cookie',
     'Auth' => array(
@@ -45,7 +46,7 @@ class AppController extends Controller {
           'fields'=>array('username'=>'username','password'=>'password')
         )
       ),
-      'loginRedirect' => array('controller' => 'products', 'action' => 'index'),
+      'loginRedirect' => array('controller' => 'queues', 'action' => 'index'),
       'logoutRedirect' => array('controller' => 'users', 'action' => 'login'),
       'loginAction' => array('controller' => 'users', 'action' => 'login'),
       'authError' => 'You must be logged in to view this page.',

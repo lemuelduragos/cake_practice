@@ -42,8 +42,8 @@
                 </tbody>
               </table>
               <div class="float-right">
-                <a href="http://localhost.com/cakeangular/users/edit" class="btn btn-info">Edit Profile</a>
-                <a href="http://localhost.com/cakeangular/users/security" class="btn btn-warning">Change Username and Password</a>
+                <a href="http://localhost.com/cake_practice/users/edit" class="btn btn-info">Edit Profile</a>
+                <a href="http://localhost.com/cake_practice/users/security" class="btn btn-warning">Change Username and Password</a>
               </div>
           </div>
         </div>  

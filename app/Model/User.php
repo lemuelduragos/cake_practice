@@ -77,12 +77,6 @@ class User extends AppModel
     	 			'message' => 'Email address is already in use.'
     	 			)
     	 	)
-	 	
-
-
- 
-
-
 	);
 		
 }

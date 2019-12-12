@@ -1,17 +1,68 @@
 var app = angular.module('orderingSystem', []);
 
+app.controller('registrarQueueController', function($scope, $http) {
+    $scope.loadRegistrarQueue = function() { 
+        $http.get("http://192.168.100.84/cake_practice/queues/select_registrar")
+        .then(function(e) {
+            $scope.queue = e.data;
+        })
 
-app.controller('productsController', function($scope, $http) {
+         $http.get("http://192.168.100.84/cake_practice/queues/select_serving")
+        .then(function(e) {
+            $scope.role = e.data.role;
+            console.log($scope.role);
+            $scope.serving_registrar = e.data.registrar;
+            $scope.serving_cashier = e.data.cashier;
+            $scope.serving_bookkeeper = e.data.bookkeeper;
 
-        $scope.loadproducts = function() { 
-            $http.get("http://localhost.com/cakeangular/products/select")
-            .then(function(e) {
-                $("#tableResults").html(e.data);
-            })
-        };
+            console.log(e.data)
+        })
+    };
+    //initial call
+    $scope.loadRegistrarQueue();
+    //polling
+    setInterval($scope.loadRegistrarQueue, 5000);
 
-        $scope.loadproducts();
+    $scope.getClientType = function(type) { 
+        switch(type) {
+            case "0" : 
+                return "New Student"
+                break;
+            case "1" :
+                return "Old Student"
+                break;
+            case "2" :
+                return "Guest"
+                break;
+        }
+    };
 
+
+     $scope.getOfficeIntended = function(type) { 
+        switch(type) {
+            case "1" :
+                return "Registrar";
+                break;
+            case "2" :
+                return "Cashier";
+                break;
+            case "3" :
+                return "Bookkeeper";
+                break;
+        }
+    };
+
+     $scope.nextRegistrar = function(queue) { 
+        var id;
+        if(queue != null && queue != "undefined" && queue.length > 0) {
+           id = queue[0].Queue.id
+        }
+
+        $http.get("http://192.168.100.84/cake_practice/queues/next?id="+id)
+        .then(function(e) {
+            $scope.loadRegistrarQueue();
+        })
+    };
 });
 
 
@@ -21,7 +72,7 @@ app.controller('userController', function($scope, $http) {
         $scope.user = {};
 
         $scope.loadUser = function() { 
-            $http.get("http://localhost.com/cakeangular/users/select")
+            $http.get("http://192.168.100.84/cake_practice/users/select")
             .then(function(e) {
                 $scope.user = e.data;
             })
@@ -31,61 +82,5 @@ app.controller('userController', function($scope, $http) {
 
     });
 });
-
-app.controller('cartsController', function($scope, $http) {
-        $scope.loadCart = function() { 
-            $http.get("http://localhost.com/cakeangular/carts/select")
-            .then(function(e) {
-                $("#tableResults").html(e.data);
-            })
-        };
-
-        $scope.removeCart = function(id) {
-            $http.post("http://localhost.com/cakeangular/carts/delete",id)
-            .then(function(e) {
-                alert('Items successfully removed from cart!');
-                $scope.countCart();
-                $scope.loadCart();
-
-            })
-        };
- 
-        $scope.loadCart();
-
-});
-
-
-
-
-app.controller('globalController', function($scope, $http) {
-    angular.element(document).ready(function () {
-        $scope.count = 0;
-        $scope.countCart = function() {
-             $http.get("http://localhost.com/cakeangular/carts/count")
-            .then(function(e) {
-                $scope.count = e.data;
-            })
-        };
-      
-        $scope.countCart();
-
-    });
-
-    $scope.addToCart = function(id,quantity) {
-        var Cart = {
-            product_id : id,
-            quantity : quantity
-        }
-        $http.post("http://localhost.com/cakeangular/carts/addCart",Cart)
-        .then(function(e) {
-            alert(quantity+' Item/s successfully added to cart!');
-            $scope.countCart();
-        })
-    };
-
-});
-
-
-
 
 //   angular.element($("[ng-controller='productsController']")).scope().mySample();

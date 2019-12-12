@@ -50,6 +50,10 @@
                   <?php echo $this->Form->input('confirm_password', 
                     array('class' => 'form-control', 'type' => 'password'))?>
                 </div>
+                 <div class="form-group">
+                  <?php echo $this->Form->input('role', 
+                    array('class' => 'form-control', 'type' => 'select'))?>
+                </div>
                  <?php echo $this->Form->end($options); ?>
               </form>
           </div>
@@ -58,4 +62,3 @@
     </div>
   </div>
 </div>
-

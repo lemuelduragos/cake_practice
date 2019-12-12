@@ -87,6 +87,7 @@ class UsersController extends AppController
 		$this->User->validate['photo'] = array();
 		$this->User->validate['new_password'] = array();
 		$this->User->validate['confirm_password'] = array();
+
 		if($this->request->is('post')) {
 			$data = $this->request->data;
 			if($data['User']['password'] == $data['User']['confirm_password']){
@@ -102,6 +103,8 @@ class UsersController extends AppController
 			}
 
 		}
+		$roles = array(1 => 'Registrar', 2=>'Cashier', 3=>'Bookkeeper');
+		$this->set('roles', $roles);
 	}
 
 	public function login() {
