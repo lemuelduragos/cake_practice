@@ -96,24 +96,27 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 
       <!-- Heading -->
       <div class="sidebar-heading">
-        Interface
+        Access Controls
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-          <i class="fas fa-fw fa-user"></i>
-          <span>Admin Controls</span>
-        </a>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
+      	<?php 
+      	if ($role == 1) {
+	 		echo "<li class=
+	 		'nav-item hidden'>
+			        <a class='nav-link collapsed' href='#' data-toggle='collapse' data-target='#collapseTwo' aria-expanded='true' aria-controls='collapseTwo'>
+			          <i class='fas fa-fw fa-user'></i>
+			          <span>Admin Controls</span>
+			        </a>
+			        <div id='collapseTwo' class='collapse' aria-labelledby='headingTwo' data-parent='#accordionSidebar'>
+			          <div class='bg-white py-2 collapse-inner rounded'>"; 
 
-      		<?php echo $this->Html->link('Add Staff','/users/register',array('class' => 'collapse-item')); ?>
-
-            <a class="collapse-item" href="cards.html">View Staff</a>
-          </div>
-        </div>
-      </li>
+            echo $this->Html->link('Add Staff','/users/register',array('class' => 'collapse-item'));
+            echo $this->Html->link('View Staff','/users/view_users',array('class' => 'collapse-item'));
+            echo "</div></div></li>"; 
+        }
+      	?>
+     
 
       <!-- Nav Item - Utilities Collapse Menu -->
       <li class="nav-item">
@@ -167,6 +170,10 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 				<?= $this->Html->link(
 				    '<i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i><span>' . h('Profile') . '</span>', 
 				    '/users/index', ['escape' => false, 'class' => 'dropdown-item']
+				) ?>
+				<?= $this->Html->link(
+				    '<i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i><span>' . h('Change Password') . '</span>', 
+				    '/users/security', ['escape' => false, 'class' => 'dropdown-item']
 				) ?>
                 <div class="dropdown-divider"></div>
                 <?= $this->Html->link(

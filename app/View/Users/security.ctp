@@ -3,7 +3,7 @@
     <div class="col-12">
       <div class="panel panel-info">
         <div class="panel-heading">
-          <h3 class="panel-title">User Profile</h3>
+          <h3 class="panel-title">Change Password</h3>
         </div>
         <div class="panel-body">
           <?php 
@@ -15,12 +15,12 @@
           ?> 
           <div class="row">
             <div class="col-lg-8 ">
-              <?php echo $this->Form->create('User', array('style' => 'width:100%')); 
-              $options = array('label' => 'Save Changes', 'class' => 'btn btn-success btn-sm float-right', 'style' => 'width:20%'); ?>
+              <?php echo $this->Form->create('User', array('class' => 'user')); 
+              $options = array('label' => 'Save Changes', 'class' => 'btn btn-primary btn-md float-right'); ?>
               <div class="form-group">
                 <?php echo $this->Form->input('username',
                 array('class' => 'form-control',
-                'value' => '{{user.0.User.username}}'));?>
+                'value' => $username));?>
               </div>
               <div class="form-group">
                 <?php echo $this->Form->input('password',

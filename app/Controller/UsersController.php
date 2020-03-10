@@ -9,8 +9,21 @@ class UsersController extends AppController {
 	}
 
 	function index() {
-		$fName = $this->Session->read('Auth')['User']['first_name'];
-		$this->set('name', $fName);
+		$firstName = $this->Session->read('Auth')['User']['first_name'];
+		$middleName = $this->Session->read('Auth')['User']['middle_name'];
+		$lastName = $this->Session->read('Auth')['User']['last_name'];
+		$role = $this->Session->read('Auth')['User']['role'];
+
+		if ($role == 1) {
+			$role = 'Admin';
+		} else {
+			$role = 'Staff';
+		}
+
+		$this->set('role', $role);
+		$this->set('firstName', $firstName);
+		$this->set('middleName', $middleName);
+		$this->set('lastName', $lastName);
 	}
 
 	function select() {
@@ -36,26 +49,11 @@ class UsersController extends AppController {
 			$id = $this->Session->read('Auth')['User']['id'];
 			$data = $this->request->data;
 			$data['User']['id'] = $id;
-			$photo = $this->request->data['User']['photo'];
-			if($photo['size'] == 0){
-				unset($data['User']['photo']);
-				$this->User->save($data);
+			unset($data['User']['photo']);
+			$this->User->save($data);
 
-				$_SESSION['Auth']['User']['first_name'] = $data['User']['first_name'] ;
-				$_SESSION['Auth']['User']['last_name'] = $data['User']['last_name'];
-			} else {
-			
-			$photoTmpName = $photo['tmp_name'];
-			$photoName = $id.$photo['name'];
-			$destination = WWW_ROOT.'img/'.$photoName;
-			$data['User']['photo'] = "img/".$photoName;
-			if($this->User->save($data)) {
-				unlink(WWW_ROOT.$currentPhoto);
-				$this->Session->read('Auth')['User']['photo'] = $data['User']['photo'];
-				$result = move_uploaded_file($photoTmpName,$destination);
-			}
-			
-			}
+			$_SESSION['Auth']['User']['first_name'] = $data['User']['first_name'] ;
+			$_SESSION['Auth']['User']['last_name'] = $data['User']['last_name'];
 		}
 
 	}
@@ -63,6 +61,7 @@ class UsersController extends AppController {
 		if($this->request->is('post') || $this->request->is('put')) {
 			$data = $this->request->data;
 			$data['User']['id'] = $this->Session->read('Auth')['User']['id'];
+			$this->set('username', $data['User']['username']);
 			$password = $_SESSION['Auth']['User']['password'];
 			if(AuthComponent::password($data['User']['password']) == $password) {
 					if($data['User']['new_password'] != $data['User']['password']) {

@@ -3,13 +3,6 @@
 class User extends AppModel
 {
 	public $validate = array(
-	    'photo' => array(
-	        'rule' => array(
-	        	'extension',
-	            array('gif', 'jpeg', 'png', 'jpg')
-	        ),
-	        'message' => 'Please supply a valid image.'
-	    ),
 	    'new_password' => array(
             'notBlank' => array(
                 'rule' => 'notBlank',
@@ -78,7 +71,6 @@ class User extends AppModel
     	 			)
     	 	)
 	);
-		
 }
 
 ?>
