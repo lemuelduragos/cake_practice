@@ -1,0 +1,48 @@
+<?php
+
+class Certificate extends AppModel {
+	public $validate = array(
+	   'reference' => array(
+            'isUnique' => array(
+                'rule' => 'isUnique',
+                'allowEmpty' => false,
+                'message' => 'Usename already in use.'
+            )),
+	    'first_name' => array(
+            'notBlank' => array(
+                'rule' => 'notBlank',
+                'allowEmpty' => false,
+                'message' => 'Please input your first name.'
+           )),
+	    'middle_name' => array(
+            'notBlank' => array(
+                'rule' => 'notBlank',
+                'allowEmpty' => false,
+                'message' => 'Please input your middle name.'
+            )),
+
+		'last_name' => array(
+            'notBlank' => array(
+                'rule' => 'notBlank',
+                'allowEmpty' => false,
+                'message' => 'Please input your last name.'
+            )),
+		'password' => array(
+            'between' => array(
+                'rule' => array('lengthBetween', 8, 225),
+                'allowEmpty' => false,
+                'required' => true,
+                'message' => 'Please input new password'
+            )
+        ),
+    	'email_address' => array(
+	 		'email' => array(
+	 			'rule' => 'email',
+	 			'message' => 'Please input a valid email address.'
+	 			)
+    	 	)
+	);
+		
+}
+
+?>

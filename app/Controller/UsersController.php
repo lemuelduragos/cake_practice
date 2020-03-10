@@ -1,7 +1,6 @@
 <?php 
 
-class UsersController extends AppController
-{
+class UsersController extends AppController {
 
 	function beforeFilter() {
 		parent::beforeFilter();
@@ -10,7 +9,10 @@ class UsersController extends AppController
 	}
 
 	function index() {
+		$fName = $this->Session->read('Auth')['User']['first_name'];
+		$this->set('name', $fName);
 	}
+
 	function select() {
 		$id = $this->Session->read('Auth')['User']['id'];
 		$this->autoRender = false;
@@ -18,6 +20,10 @@ class UsersController extends AppController
 			'conditions' => array('id' => $id)
 			));
 		return json_encode($data);
+	}
+
+	function view_users() {
+		
 	}
 
 	function edit() {
@@ -84,7 +90,6 @@ class UsersController extends AppController
 	}
 	function register(){
 
-		$this->User->validate['photo'] = array();
 		$this->User->validate['new_password'] = array();
 		$this->User->validate['confirm_password'] = array();
 
@@ -103,11 +108,12 @@ class UsersController extends AppController
 			}
 
 		}
-		$roles = array(1 => 'Registrar', 2=>'Cashier', 3=>'Bookkeeper');
+		$roles = array( 0=>'Staff', 1 => 'Admin');
 		$this->set('roles', $roles);
 	}
 
 	public function login() {
+		$this->layout = 'login';
 
 		if(isset($this->Session->read('Auth')['User']['id'])){
 			return $this->redirect($this->Auth->redirectUrl());
@@ -116,7 +122,7 @@ class UsersController extends AppController
 		if ($this->request->is('post')) {
 			$username = $this->request->data['User']['Username'];
 			$password = AuthComponent::password($this->request->data['User']['Password']);
-			// AuthComponent::password();
+			// ;
 			$conditions = array(
 				'User.username' => $username,
 				'User.password' => $password

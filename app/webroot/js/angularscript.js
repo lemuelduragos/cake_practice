@@ -1,13 +1,13 @@
-var app = angular.module('orderingSystem', []);
+var app = angular.module('eTesda', []);
 
 app.controller('registrarQueueController', function($scope, $http) {
     $scope.loadRegistrarQueue = function() { 
-        $http.get("http://192.168.100.84/cake_practice/queues/select_registrar")
+        $http.get("localhost/cake_practice/queues/select_registrar")
         .then(function(e) {
             $scope.queue = e.data;
         })
 
-         $http.get("http://192.168.100.84/cake_practice/queues/select_serving")
+         $http.get("localhost/cake_practice/queues/select_serving")
         .then(function(e) {
             $scope.role = e.data.role;
             console.log($scope.role);
@@ -58,7 +58,7 @@ app.controller('registrarQueueController', function($scope, $http) {
            id = queue[0].Queue.id
         }
 
-        $http.get("http://192.168.100.84/cake_practice/queues/next?id="+id)
+        $http.get("localhost/cake_practice/queues/next?id="+id)
         .then(function(e) {
             $scope.loadRegistrarQueue();
         })
@@ -69,16 +69,14 @@ app.controller('registrarQueueController', function($scope, $http) {
 app.controller('userController', function($scope, $http) {
     angular.element(document).ready(function () {
 
-        $scope.user = {};
+        $scope.login = function() { 
 
-        $scope.loadUser = function() { 
-            $http.get("http://192.168.100.84/cake_practice/users/select")
+            $http.get("/cake_practice/users/request_login")
             .then(function(e) {
+                console.log(e);
                 $scope.user = e.data;
             })
         };
-
-        $scope.loadUser();
 
     });
 });
