@@ -9,7 +9,7 @@ class CertificatesController extends AppController {
 	}
 
 	function add() {
-		$roles = array( 0=>'Not yet competent.', 1 => 'Competent');
+		
 		$this->set('assessment_results', $roles);
 	}
 }

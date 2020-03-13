@@ -87,7 +87,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
       <li class="nav-item">
     	<?= $this->Html->link(
 		    '<i class="fas fa-fw fa-tachometer-alt"></i><span>' . h('Dashboard  ') . '</span>', 
-		    '/certificates/index', ['escape' => false, 'class' => 'nav-link']
+		    '/users/login_redirect', ['escape' => false, 'class' => 'nav-link']
 		) ?>
       </li>
 
@@ -112,27 +112,29 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 			          <div class='bg-white py-2 collapse-inner rounded'>"; 
 
             echo $this->Html->link('Add Staff','/users/register',array('class' => 'collapse-item'));
-            echo $this->Html->link('View Staff','/users/view_users',array('class' => 'collapse-item'));
+            echo $this->Html->link('View Staffs','/users/view_staffs',array('class' => 'collapse-item'));
             echo "</div></div></li>"; 
+        } else {
+			echo "<li class='nav-item'>
+			        <a class='nav-link collapsed' href='#' data-toggle='collapse' data-target='#collapseUtilities' aria-expanded='true' aria-controls='collapseUtilities'>
+			          <i class='fas fa-fw fa-users'></i>
+			          <span>Staff Controls</span>
+			        </a>
+			        <div id='collapseUtilities' class='collapse' aria-labelledby='headingUtilities' data-parent='#accordionSidebar'>
+			          <div class='bg-white py-2 collapse-inner rounded'>";
+
+			echo $this->Html->link('Add Graduate Log','/certificates/add',array('class' => 'collapse-item'));
+
+		    echo "<a class='collapse-item' href='utilities-border.html'>View Graduate Log</a>
+		          </div>
+		        </div>
+		      </li>";
         }
       	?>
      
 
       <!-- Nav Item - Utilities Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-          <i class="fas fa-fw fa-users"></i>
-          <span>Staff Controls</span>
-        </a>
-        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-
-          	<?php echo $this->Html->link('Add Graduate Log','/certificates/add',array('class' => 'collapse-item')); ?>
-
-            <a class="collapse-item" href="utilities-border.html">View Graduate Log</a>
-          </div>
-        </div>
-      </li>
+     
 
       <!-- Divider -->
       <hr class="sidebar-divider">

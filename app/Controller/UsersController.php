@@ -35,8 +35,13 @@ class UsersController extends AppController {
 		return json_encode($data);
 	}
 
-	function view_users() {
-		
+	function view_staffs() {
+		$this->paginate = array(
+		 	'fields' => array('User.*'),
+			'limit' => '10',
+			'conditions' => array('role !=' => 1)
+		);
+		$this->set('staffs', $this->paginate( $this->User ));
 	}
 
 	function edit() {
@@ -140,9 +145,27 @@ class UsersController extends AppController {
 		}
 	}
 
+	public function login_redirect() {
+		$this->autoLayout = false;
+	    $this->autoRender = false ;
+
+	    $role = $_SESSION['Auth']['User']['role'];
+	    switch($role) {
+	      case 1: 
+	        $controller = " logs";
+	        break;
+	      default: 
+	        $controller = " certificates";
+	        break;
+	    };
+
+	    $this->redirect(array('controller' => $controller, 'action' => 'index')); // Line added
+
+	}
+
 
 	public function logout() {
-	return $this->redirect($this->Auth->logout());
+		return $this->redirect($this->Auth->logout());
 		unset($_SESSION['User']);  
 
 	}

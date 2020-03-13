@@ -58,7 +58,7 @@ class Component extends CakeObject {
  *
  * @var array
  */
-	public $components = array();
+	public $components = array('Paginator');
 
 /**
  * A component lookup table used to lazy load component objects.
