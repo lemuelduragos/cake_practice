@@ -2,12 +2,6 @@
 
 class Certificate extends AppModel {
 	public $validate = array(
-	   'reference' => array(
-            'isUnique' => array(
-                'rule' => 'isUnique',
-                'allowEmpty' => false,
-                'message' => 'Duplicate reference number.'
-            )),
 	    'first_name' => array(
             'notBlank' => array(
                 'rule' => 'notBlank',
@@ -43,20 +37,6 @@ class Certificate extends AppModel {
 	 			'message' => 'Please input a valid email address.'
  			)
 	 	)
-        'contact_number' => array(
-            'numeric' => array(
-                'rule' => 'numeric',
-                'allowEmpty' => false,
-                'message' => 'Please input contact number'
-            )
-
-            'between' => array(
-                'rule' => array('lengthBetween', 7, 11),
-                'allowEmpty' => false,
-                'required' => true,
-                'message' => 'Please input new password'
-            )
-        )
 	);		
 }
 

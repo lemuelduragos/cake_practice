@@ -11,16 +11,30 @@ class CertificatesController extends AppController {
 	}
 
 	function index(){
-		$this->Session->read('Auth')['User']['id'];
-	}
+		$data = $this->request->query;
 
-	function add() {
-		$results = array( 0=>'Not yet competent.', 1 => 'Competent');
-		$this->set('assessment_results', $results);
+		$this->paginate = array(
+		 	'fields' => array('Certificate.*'),
+			'limit' => '10',
+		);
+		$this->set('requests', $this->paginate( $this->Certificate ));
 	}
 
 	function request() {
 		$this->layout = 'request';
+
+		if($this->request->is('post')) {
+			$data = $this->request->data;
+			
+			$this->Certificate->create();
+		    if($this->Certificate->save($data)){
+				unset($this->request->data);
+
+				$this->Flash->set('Successfully Added', array('key' => 'success'));
+			} else {
+				$this->Flash->set('Please recheck input fields', array('key' => 'error'));
+			}
+		}
 	}
 }
 
