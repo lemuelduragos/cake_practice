@@ -1,0 +1,16 @@
+<?php
+
+class Graduate extends AppModel
+{
+    public $validate = array(
+        'reference_number' => array(
+            'notBlank' => array(
+                'rule' => 'notBlank',
+                'required' => true,
+                'message' => 'Please input new password'
+            )
+        )
+    );
+}
+
+?>

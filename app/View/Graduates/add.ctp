@@ -8,13 +8,22 @@
         </div>
         <div class="panel-body">
           <div class="row">
-            <div class=" col-md-9 col-lg-9 "> 
-              <?php echo $this->Form->create('Certificate', array('class' => 'user')); 
+            <div class=" col-md-9 col-lg-10 "> 
+              <?php 
+
+                if(isset($_SESSION['Message']['success'])){
+                    echo "<div class='alert alert-success'>". $this->Flash->render('success')."</div>";
+                } else if(isset($_SESSION['Message']['error'])) {
+                     echo "<div class='alert alert-danger'>". $this->Flash->render('error')."</div>";
+                }
+
+                echo $this->Form->create('Graduate', array('class' => 'user')); 
                   $options = array('label' => 'Add',
                     'class' => 'btn btn-primary btn-md float-right',
                     'style' => 'width:20%'); ?>
+                    
                 <div class="form-group">
-                  <?php echo $this->Form->input('reference',
+                  <?php echo $this->Form->input('reference_number',
                     array('class' => 'form-control',
                       'label' => 'Reference No.'));?>
                 </div>
@@ -40,11 +49,12 @@
                 <div class="form-group">
                   <?php echo $this->Form->input('issued_date', 
                     array('class' => 'form-control col-3 d-inline', 
-                    'label' => 'Date Issued'));?>
+                    'label' => 'Date Issued&nbsp'));?>
                 </div>
                 <div class="form-group">
                   <?php echo $this->Form->input('assessment_date', 
-                    array('class' => 'form-control col-3 d-inline'));?>
+                    array('class' => 'form-control col-3 d-inline',
+                      'label' => 'Assessment Date&nbsp'));?>
                 </div>
                 <div class="form-group">
                   <?php 

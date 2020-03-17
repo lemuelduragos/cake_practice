@@ -6,7 +6,7 @@ class Certificate extends AppModel {
             'isUnique' => array(
                 'rule' => 'isUnique',
                 'allowEmpty' => false,
-                'message' => 'Usename already in use.'
+                'message' => 'Duplicate reference number.'
             )),
 	    'first_name' => array(
             'notBlank' => array(
@@ -38,11 +38,26 @@ class Certificate extends AppModel {
     	'email_address' => array(
 	 		'email' => array(
 	 			'rule' => 'email',
+                'allowEmpty' => false,
+                'required' => true,
 	 			'message' => 'Please input a valid email address.'
-	 			)
-    	 	)
-	);
-		
+ 			)
+	 	)
+        'contact_number' => array(
+            'numeric' => array(
+                'rule' => 'numeric',
+                'allowEmpty' => false,
+                'message' => 'Please input contact number'
+            )
+
+            'between' => array(
+                'rule' => array('lengthBetween', 7, 11),
+                'allowEmpty' => false,
+                'required' => true,
+                'message' => 'Please input new password'
+            )
+        )
+	);		
 }
 
 ?>

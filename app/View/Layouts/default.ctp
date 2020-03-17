@@ -73,12 +73,14 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-        <div class="sidebar-brand-icon rotate-n-15">
-          <i class="fas fa-cog"></i>
-        </div>
-        <div class="sidebar-brand-text mx-3">E-TESDA</div>
-      </a>
+
+      <?= $this->Html->link(
+				    '<div class="sidebar-brand-icon rotate-n-15">
+ 						<i class="fas fa-cog"></i>
+				    </div>
+				    <div class="sidebar-brand-text mx-3">E-TESDA</div>', 
+				    '/users/login', ['escape' => false, 'class' => 'sidebar-brand d-flex align-items-center justify-content-center']
+				) ?>
 
       <!-- Divider -->
       <hr class="sidebar-divider my-0">
@@ -123,9 +125,9 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 			        <div id='collapseUtilities' class='collapse' aria-labelledby='headingUtilities' data-parent='#accordionSidebar'>
 			          <div class='bg-white py-2 collapse-inner rounded'>";
 
-			echo $this->Html->link('Add Graduate Log','/certificates/add',array('class' => 'collapse-item'));
+			echo $this->Html->link('Add Graduate','/graduates/add',array('class' => 'collapse-item'));
 
-		    echo "<a class='collapse-item' href='utilities-border.html'>View Graduate Log</a>
+		    echo "<a class='collapse-item' href='utilities-border.html'>View All Graduates</a>
 		          </div>
 		        </div>
 		      </li>";
