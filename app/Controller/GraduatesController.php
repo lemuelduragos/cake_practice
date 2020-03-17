@@ -5,7 +5,13 @@ class GraduatesController extends AppController {
 	public $uses = array('Graduate', 'Log');
 
 	function index(){
-		$this->Session->read('Auth')['User']['id'];
+		$data = $this->request->query;
+
+		$this->paginate = array(
+		 	'fields' => array('Graduate.*'),
+			'limit' => '10',
+		);
+		$this->set('graduates', $this->paginate( $this->Graduate ));
 	}
 
 	function add() {
