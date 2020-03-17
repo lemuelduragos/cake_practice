@@ -60,7 +60,7 @@
                 </div>
 
                 <div class="form-group">
-                  <?php echo $this->Form->input('email_address', 
+                  <?php echo $this->Form->input('contact_number', 
                     array('class' => 'form-control',
                       'label' => 'Contact Number'));?>
                 </div>

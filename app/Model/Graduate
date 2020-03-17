@@ -1,15 +1,12 @@
 <?php
 
-class Graduate extends AppModel
-{
-    public $validate = array(
+class Graduate extends AppModel{
+    var $name = 'Graduate';
+    var $validate = array(
         'reference_number' => array(
-            'notBlank' => array(
-                'rule' => 'notBlank',
-                'required' => true,
-                'message' => 'Please input new password'
-            )
-        )
+            'rule' => 'required',
+            'required' => true
+        ),
     );
 }
 

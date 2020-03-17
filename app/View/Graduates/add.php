@@ -18,18 +18,17 @@
                 }
 
                 echo $this->Form->create('Graduate', array('class' => 'user')); 
+
                   $options = array('label' => 'Add',
-                    'class' => 'btn btn-primary btn-md float-right',
-                    'style' => 'width:20%'); ?>
+                    'class' => 'btn btn-primary btn-md float-right'); ?>
                     
                 <div class="form-group">
                   <?php echo $this->Form->input('reference_number',
-                    array('class' => 'form-control',
-                      'label' => 'Reference No.'));?>
+                    array('class' => 'form-control', 'required' => 'required'));?>
                 </div>
                 <div class="form-group">
                   <?php echo $this->Form->input('first_name',
-                    array('class' => 'form-control',
+                    array('class' => 'form-control', 'required' => 'required',
                       'label' => 'Firstname'));?>
                 </div>
                 <div class="form-group">
@@ -39,23 +38,34 @@
                 </div>
                 <div class="form-group">
                   <?php echo $this->Form->input('last_name',
-                    array('class' => 'form-control',
+                    array('class' => 'form-control', 'required' => 'required',
                       'label' => 'Lastname'));?>
                 </div>
                 <div class="form-group">
                   <?php echo $this->Form->input('email_address', 
-                    array('class' => 'form-control'));?>
+                    array('class' => 'form-control', 
+                      'type' => 'email',
+                      'required' => 'required'));?>
                 </div>
+
+                <div class="form-group">
+                  <?php echo $this->Form->input('center',
+                    array('class' => 'form-control', 'required' => 'required',
+                      'label' => 'Center'));?>
+                </div>
+
                 <div class="form-group">
                   <?php echo $this->Form->input('issued_date', 
-                    array('class' => 'form-control col-3 d-inline', 
+                    array('class' => 'form-control col-3 d-inline', 'required' => 'required',
                     'label' => 'Date Issued&nbsp'));?>
                 </div>
+
                 <div class="form-group">
                   <?php echo $this->Form->input('assessment_date', 
-                    array('class' => 'form-control col-3 d-inline',
+                    array('class' => 'form-control col-3 d-inline', 'required' => 'required',
                       'label' => 'Assessment Date&nbsp'));?>
                 </div>
+
                 <div class="form-group">
                   <?php 
                     $select = array( 0=>'Not yet competent.', 1 => 'Competent');
@@ -64,19 +74,26 @@
                         'options' => $select,
                         'empty' => 'Select Result',
                         'id' => 'location',
-                        'class' => 'form-control' ));
+                        'class' => 'form-control',
+                        'required' => 'required'));
                     ?>
                 </div>
 
                 <div class="form-group">
+                  <?php echo $this->Form->input('recommendation',
+                    array('class' => 'form-control', 'required' => 'required',
+                      'label' => 'Recommendation'));?>
+                </div>
+
+                <div class="form-group">
                   <?php echo $this->Form->input('assessed_by',
-                   array('class' => 'form-control',
+                   array('class' => 'form-control', 'required' => 'required',
                       'label' => 'Assessed By'));?>
                 </div>
 
                 <div class="form-group">
                   <?php echo $this->Form->input('attested_by',
-                   array('class' => 'form-control',
+                   array('class' => 'form-control', 'required' => 'required',
                       'label' => 'Attested By'));?>
                 </div>
 
