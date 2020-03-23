@@ -86,7 +86,13 @@ class CertificatesController extends AppController {
 		);
 
 		if(isset($data["success"]) && $data["success"] == 'true') {
-			$this->Flash->set('Successfully Updated Status', array('key' => 'success'));
+			$email = isset($data["email"]) ? $data["email"] : "";
+			if (empty($email)) {
+				$this->Flash->set('Successfully Updated Status', array('key' => 'success'));
+			} else {
+				$this->Flash->set('Successfully Updated Status. An email has been sent to '.$email, array('key' => 'success'));
+			}
+			
 		} else {
 			$this->Session->delete('Flash.success');
 		}
@@ -127,6 +133,7 @@ class CertificatesController extends AppController {
 			$mname = $data['middle_name'];
 			$lname = $data['last_name'];
 			$last = $data['last_status'];
+			$email_address = "";
 
 			//logs paramst
 			$params["Log"]["user_id"] = $this->Session->read('Auth')['User']['id'];
@@ -137,12 +144,34 @@ class CertificatesController extends AppController {
 			$this->Log->save($params);
 
 			unset($this->request->data);
+
+			if($data['status'] == 1) {
+				$email_address = $data['email_address'];
+				$this->send_email($email_address);
+			}
 		}
 
  		$this->redirect(array('controller' => 'certificates', 'action' => 'index', "?" => array('success' => 'true')));
 	}
 
+	function send_email($email) {
+		$this->layout = false;
+		$this->autoRender = false;
+
+		$Email = new CakeEmail('gmail');
+		$Email->from(array('etesda.is@gmail.com' => 'eTesda Infromation System'));
+		$Email->to($email);
+		$Email->subject('National Certificate Request');
+		$Email->send('Your national certifate is ready for release.');
+
+ 		$this->redirect(array('controller' => 'certificates', 'action' => 'index', "?" => array('success' => 'true', 'email' => $email)));
+	}
+
 	function get_status($status) {
+		$this->layout = false;
+		$this->autoRender = false;
+
+
 		switch($status) {
 			case '1':
 				return "Pending";

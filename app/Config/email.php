@@ -36,12 +36,13 @@
  */
 class EmailConfig {
 
-	public $default = array(
-		'transport' => 'Mail',
-		'from' => 'you@localhost',
-		//'charset' => 'utf-8',
-		//'headerCharset' => 'utf-8',
-	);
+    public $gmail = array(
+        'host' => 'ssl://smtp.gmail.com',
+        'port' => 465,
+        'username' => 'etesda.is@gmail.com',
+        'password' => 'vfr4nhy6',
+        'transport' => 'Smtp'
+    );
 
 	public $smtp = array(
 		'transport' => 'Smtp',

@@ -157,6 +157,12 @@
 			        	'value' => $log['last_name'],
 			        	'label' => false,)
 			      );
+    			echo $this->Form->input('email_address', 
+			      	array('class' => 'form-control', 
+			        	'type' => 'hidden',
+			        	'value' => $log['email_address'],
+			        	'label' => false,)
+			      );
 				echo $this->Form->input('last_status', 
 			      	array('class' => 'form-control', 
 			        	'type' => 'hidden',
