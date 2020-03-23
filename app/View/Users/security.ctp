@@ -20,7 +20,7 @@
               <div class="form-group">
                 <?php echo $this->Form->input('username',
                 array('class' => 'form-control',
-                'value' => $username));?>
+                'value' => isset($username)?$username : ''));?>
               </div>
               <div class="form-group">
                 <?php echo $this->Form->input('password',

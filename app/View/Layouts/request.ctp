@@ -22,8 +22,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 <head>
 	<?php echo $this->Html->charset(); ?>
 	<title>
-		<?php echo $cakeDescription ?>:
-		<?php echo $this->fetch('title'); ?>
+		E-TESDA IS
 	</title>
 	<?php
 		echo $this->Html->meta('icon');
@@ -77,13 +76,10 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 
         <!-- Topbar -->
         <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow"/>
-
-          <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-            <div class="sidebar-brand-icon rotate-n-15">
-              <i class="fas fa-cog"></i>
-            </div>
-            <div class="sidebar-brand-text mx-3">E-TESDA Information System</div>
-          </a>
+          <img src="https://www.treston.edu.ph/images/content/page-content/tesdalogo.png" class="brand-image-footer">
+          <h2 class="brand-request-title">
+            E-TESDA Information System
+          </h2>
 
         </nav>
         <!-- End of Topbar -->
@@ -113,24 +109,13 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
     <i class="fas fa-angle-up"></i>
   </a>
 
-  <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="login">Logout</a>
-        </div>
+  <footer class="sticky-footer bg-white">
+    <div class="container my-auto">
+      <div class="copyright text-center my-auto">
+        <img src="https://www.treston.edu.ph/images/content/page-content/tesdalogo.png" class="brand-image-footer mr-2">
+        <span>Copyright &copy; E-TESDA Information System 2020</span>
       </div>
     </div>
-  </div>
+  </footer>
 </body>
 </html>
-<!-- <?php echo $this->element('sql_dump'); ?> -->

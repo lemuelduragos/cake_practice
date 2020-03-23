@@ -24,7 +24,7 @@
   --white: #fff;
   --gray: #858796;
   --gray-dark: #5a5c69;
-  --primary: #4e73df;
+  --primary: #1E93DD;
   --secondary: #858796;
   --success: #1cc88a;
   --info: #36b9cc;
@@ -9363,7 +9363,7 @@ button.bg-dark:focus {
 }
 
 .text-primary {
-  color: #4e73df !important;
+  color: #1E93DD !important;
 }
 
 a.text-primary:hover, a.text-primary:focus {
@@ -10583,10 +10583,23 @@ a:focus {
   }
 }
 
-.bg-login-image {
-  /*background: url("https://www.equals.org.ph/equals-by-philcoched/wp-content/uploads/2017/01/blog-tesda.jpg");*/
-  background-position: center;
-  background-size: cover;
+.brand-image {
+  width:80%;
+}
+
+.brand-image-footer {
+  width:10%;
+  padding: 2%;
+}
+
+.brand-request-title {
+  font-family: Arial, Helvetica, sans-serif !important;
+  font-weight: bold;
+}
+
+.login-intro {
+  padding: 6%;
+  background-color: #e8eaed;
 }
 
 .bg-register-image {
