@@ -25,7 +25,8 @@ class LogsController extends AppController {
 					)
 				)
 			),
-			'limit' => '10'
+			'limit' => '10',
+			'order' => array('Log.created DESC')
 		);
 		$this->set('logs', $this->paginate( $this->Log ));
 	}	
@@ -46,7 +47,8 @@ class LogsController extends AppController {
 				)
 			),
 			'limit' => '10',
-			'conditions' => array('user.id' => $data['id'])
+			'conditions' => array('user.id' => $data['id']),
+			'order' => array('Log.created DESC')
 		);
 		$this->set('name', $data['name']);
 		$this->set('logs', $this->paginate( $this->Log ));
