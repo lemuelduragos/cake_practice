@@ -147,6 +147,8 @@ class CertificatesController extends AppController {
 
 			if($data['status'] == 1) {
 				$email_address = $data['email_address'];
+				$number = $data['contact_number'];
+				$this->send_sms($number);
 				$this->send_email($email_address);
 			}
 		}
@@ -165,6 +167,31 @@ class CertificatesController extends AppController {
 		$Email->send('Your national certificate is ready for release.');
 
  		$this->redirect(array('controller' => 'certificates', 'action' => 'index', "?" => array('success' => 'true', 'email' => $email)));
+	}
+
+	function send_sms($number) {
+		$this->layout = false;
+		$this->autoRender = false;
+
+		$country_code = '63';
+		$number = substr_replace($number, '+'.$country_code, 0, ($number[0] == '0'));
+
+		$ch = curl_init();
+
+		curl_setopt($ch, CURLOPT_URL, 'https://rest.nexmo.com/sms/json');
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, "from=eTesda&text=Your national certificate is ready for release.&to=".$number."&api_key=7024701d&api_secret=SLthNWi9BdQijSkh");
+		curl_setopt($ch, CURLOPT_POST, 1);
+
+		$headers = array();
+		$headers[] = 'Content-Type: application/x-www-form-urlencoded';
+		curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+
+		$result = curl_exec($ch);
+		if (curl_errno($ch)) {
+		    echo 'Error:' . curl_error($ch);
+		}
+		curl_close ($ch);
 	}
 
 	function get_status($status) {

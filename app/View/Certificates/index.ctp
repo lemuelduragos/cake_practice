@@ -163,7 +163,13 @@
 			        	'value' => $log['email_address'],
 			        	'label' => false,)
 			      );
-				echo $this->Form->input('last_status', 
+          echo $this->Form->input('contact_number', 
+              array('class' => 'form-control', 
+                'type' => 'hidden',
+                'value' => $log['contact_number'],
+                'label' => false,)
+            );
+				  echo $this->Form->input('last_status', 
 			      	array('class' => 'form-control', 
 			        	'type' => 'hidden',
 			        	'value' => $log['status'],
