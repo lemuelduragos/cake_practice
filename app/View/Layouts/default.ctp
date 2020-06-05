@@ -127,7 +127,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 
 			echo $this->Html->link('Add Graduate','/graduates/add',array('class' => 'collapse-item'));
 
-			echo $this->Html->link('Add Graduate','/graduates/index',array('class' => 'collapse-item'));
+			echo $this->Html->link('View Graduates List','/graduates/index',array('class' => 'collapse-item'));
 		    echo "</div>
 		        </div>
 		      </li>";
