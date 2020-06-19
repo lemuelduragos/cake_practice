@@ -164,7 +164,8 @@ class CertificatesController extends AppController {
 		$Email->from(array('etesda.is@gmail.com' => 'eTesda Infromation System'));
 		$Email->to($email);
 		$Email->subject('National Certificate Request');
-		$Email->send('YOUR NATIONAL CERTIFICATE IS READY TO RELEASE.');
+		$Email->send('TESDA Advisory: 
+Your national certificate is ready for release within 3 working days upon receipt of this message. Please bring your claim stab upon claiming and certificate fees..');
 
  		$this->redirect(array('controller' => 'certificates', 'action' => 'index', "?" => array('success' => 'true', 'email' => $email)));
 	}
