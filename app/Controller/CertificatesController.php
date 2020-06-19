@@ -180,7 +180,8 @@ class CertificatesController extends AppController {
 
 		curl_setopt($ch, CURLOPT_URL, 'https://rest.nexmo.com/sms/json');
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-		curl_setopt($ch, CURLOPT_POSTFIELDS, "from=eTesda&text=Your national certificate is ready for release.&to=".$number."&api_key=7024701d&api_secret=SLthNWi9BdQijSkh");
+		curl_setopt($ch, CURLOPT_POSTFIELDS, "from=eTesda&text=TESDA Advisory: 
+Your national certificate is ready for release within 3 working days upon receipt of this message. Please bring your claim stab upon claiming and certificate fees.&to=".$number."&api_key=7024701d&api_secret=SLthNWi9BdQijSkh");
 		curl_setopt($ch, CURLOPT_POST, 1);
 
 		$headers = array();
